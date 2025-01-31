@@ -56,9 +56,16 @@ module "config_autoremediation_execution_sns" {
   version = ">= 6.0.0"
 
   name = var.sns_topic_name
-}
-
-resource "aws_sns_topic_policy" "config_autoremediation_execution_sns_topic_policy_attachment" {
-  arn    = module.config_autoremediation_execution_sns.topic_arn
-  policy = data.aws_iam_policy_document.config_autoremediation_execution_sns_topic_policy.json
+  create_topic_policy         = true
+  enable_default_topic_policy = true
+  topic_policy_statements = {
+    pub = {
+      actions = ["sns:Publish"]
+      principals = [{
+        type        = "AWS"
+        identifiers = ["events.amazonaws.com"]
+      }]
+    },
+    }
+  #topic_policy = data.aws_iam_policy_document.config_autoremediation_execution_sns_topic_policy.json
 }

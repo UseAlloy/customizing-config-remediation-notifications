@@ -1,0 +1,26 @@
+.terraform
+terraform.tfstate
+terraform.tfstate.*
+.DS_Store
+*.swp
+*.swo
+
+# We won't want to commit lock files in our modules
+modules/**/.terraform.lock.hcl
+
+# Common plan artifacts
+tfplan
+tfplan.out
+tfplan.*.out
+plan.out
+terraform.tfplan
+output.log
+state.json
+plan.txt
+
+# Editor artifacts
+.idea
+.vscode
+
+# Certificates and Private Key Outputs
+*.pem
