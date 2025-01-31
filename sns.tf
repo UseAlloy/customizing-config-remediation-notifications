@@ -58,7 +58,7 @@ module "config_autoremediation_execution_sns" {
   name                        = "${var.name}-sns-topic"
   create_topic_policy         = true
   enable_default_topic_policy = true
-  
+
   topic_policy_statements = {
     pub = {
       actions = ["sns:Publish"]

@@ -15,11 +15,11 @@ variable "cloudtrail_log_group_arn" {
 }
 
 variable "slack_channel_id" {
-  description  = "The id of the Slack channel"
-  type         = string
+  description = "The id of the Slack channel"
+  type        = string
 }
 
 variable "slack_workspace_id" {
-  description  = "The id of the Slack workspace"
-  type         = string
+  description = "The id of the Slack workspace"
+  type        = string
 }
