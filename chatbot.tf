@@ -23,15 +23,13 @@ data "aws_iam_policy_document" "chatbot" {
 
 resource "aws_iam_role" "chatbot_role" {
   assume_role_policy = data.aws_iam_policy_document.chatbot.json
-  name               = "AWSChatbot"
+  name               = "${var.name}-chatbot-role"
 }
 
 resource "aws_iam_policy" "chatbot_policy" {
   name        = "chatbot-policy"
   description = "Policy for Chatbot"
 
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
   policy = jsonencode({
     Statement = [
       {
