@@ -2,14 +2,15 @@ module "lambda_function" {
   source  = "terraform-aws-modules/lambda/aws"
   version = ">= 7.0.0"
 
-  function_name          = "Customizing Config Remediation Notifications"
+  function_name          = "${var.name}-lambda"
   description            = "Customize the messaging for Config remedations sent to Slack"
-  handler                = "index.lambda_handler"
+  handler                = "lambda_function.lambda_handler"
   runtime                = "python3.12"
   ephemeral_storage_size = 10240
   architectures          = ["x86_64"]
+  create_package         = false
 
-  source_path = "${path.module}/../fixtures/python-app1"
+  local_existing_package = "${path.module}/../function_code/my_deployment_package.zip"
 
   environment_variables = {
     "SNS_TOPIC_ARN"              = module.config_autoremediation_execution_sns.topic_arn

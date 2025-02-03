@@ -6,7 +6,7 @@ terraform.tfstate.*
 *.swo
 
 # We won't want to commit lock files in our modules
-modules/**/.terraform.lock.hcl
+.terraform.lock.hcl
 
 # Common plan artifacts
 tfplan
@@ -24,3 +24,6 @@ plan.txt
 
 # Certificates and Private Key Outputs
 *.pem
+
+# Package data
+function_code/package*

@@ -1,5 +1,5 @@
 resource "aws_ssm_parameter" "config_custom_chatbot_notification_mapping_parameter" {
-  name = "config-custom-chatbot-notification-mapping-parameter"
+  name = "${var.name}-mapping-parameter"
   type = "StringList"
   value = jsonencode(
     {
