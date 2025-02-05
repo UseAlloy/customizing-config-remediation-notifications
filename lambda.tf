@@ -10,7 +10,7 @@ module "lambda_function" {
   architectures          = ["x86_64"]
   create_package         = false
 
-  local_existing_package = "${path.module}/../function_code/my_deployment_package.zip"
+  local_existing_package = "${path.module}/function_code/my_deployment_package.zip"
 
   environment_variables = {
     "SNS_TOPIC_ARN"              = module.config_autoremediation_execution_sns.topic_arn
