@@ -31,6 +31,7 @@ resource "aws_iam_policy" "chatbot_policy" {
   description = "Policy for Chatbot"
 
   policy = jsonencode({
+    Version = "2012-10-17"
     Statement = [
       {
         Action = [
