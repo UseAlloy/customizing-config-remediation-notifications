@@ -36,7 +36,7 @@ def execute_cloudwatch_query(event, ssm_client, logs_client, sns_client):
   query = get_custom_query(ssm_client, event)
   retries = 10
   num_results = 0
-  log_group = "CloudTrail/DefaultLogGroup"
+  log_group = os.environ["CLOUDTRAIL_LOG_GROUP_ARN"]
 
   print("The custom query is:", query)
 
@@ -45,7 +45,7 @@ def execute_cloudwatch_query(event, ssm_client, logs_client, sns_client):
     response = None 
 
     start_query_response = logs_client.start_query(
-      logGroupName=log_group,
+      logGroupIdentifiers=[log_group],
       startTime=int((datetime.today() - timedelta(minutes=15)).timestamp()),
       endTime=int(datetime.now().timestamp()),
       queryString=query,  

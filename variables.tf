@@ -5,7 +5,7 @@ variable "name" {
 }
 
 variable "config_remediation_role_arn" {
-  description = "ARN of the global IAM role used for remediation"
+  description = "ARN of the global IAM role used for remediation, must be assumable by ssm.amazonaws.com"
   type        = string
 }
 
