@@ -2,18 +2,18 @@ module "lambda_function" {
   source  = "terraform-aws-modules/lambda/aws"
   version = ">= 7.0.0"
 
-  function_name          = "${var.name}-lambda"
-  description            = "Customize the messaging for Config remedations sent to Slack"
-  handler                = "lambda_function.lambda_handler"
-  runtime                = "python3.12"
-  attach_policy_statements = true
-  ephemeral_storage_size = 10240
-  architectures          = ["x86_64"]
-  create_package         = false
+  function_name                           = "${var.name}-lambda"
+  description                             = "Customize the messaging for Config remedations sent to Slack"
+  handler                                 = "lambda_function.lambda_handler"
+  runtime                                 = "python3.12"
+  architectures                           = ["x86_64"]
+  attach_policy_statements                = true
+  create_package                          = false
   create_current_version_allowed_triggers = false
+  ephemeral_storage_size                  = 10240
+  local_existing_package                  = "${path.module}/function_code/my_deployment_package.zip"
+  timeout                                 = 300
 
-  local_existing_package = "${path.module}/function_code/my_deployment_package.zip"
-  timeout                = 300
 
   allowed_triggers = {
     AutomationExecutionRule = {
@@ -26,7 +26,7 @@ module "lambda_function" {
     "SNS_TOPIC_ARN"              = module.config_autoremediation_execution_sns.topic_arn
     "REMEDIATION_ROLE_ARN"       = var.config_remediation_role_arn
     "SSM_MAPPING_PARAMETER_NAME" = aws_ssm_parameter.config_custom_chatbot_notification_mapping_parameter.name
-    "CLOUDTRAIL_LOG_GROUP_ARN"  = var.cloudtrail_log_group_arn
+    "CLOUDTRAIL_LOG_GROUP_ARN"   = var.cloudtrail_log_group_arn
   }
 
   policy_statements = {
