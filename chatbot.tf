@@ -60,3 +60,6 @@ resource "aws_iam_role_policy_attachment" "role_attachment" {
   role       = aws_iam_role.chatbot_role.name
   policy_arn = aws_iam_policy.chatbot_policy.arn
 }
+
+# NOTE - the configuration of AWS Chatbot to your organization on Slack still needs to occur outside of
+# This code - so far there is no resource to manage this configuration via code.
