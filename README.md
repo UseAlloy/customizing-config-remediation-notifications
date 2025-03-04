@@ -13,6 +13,7 @@ The CloudWatch event rule watches for Config initiating an SSM document-based re
 - You must manually enable AWS Chatbot (Amazon Q Developer in chat applications) the first time in a given account before the above resources can be deployed
 - This infrastructure doesn't include configuring AWS Config rules nor remediations on Config rules. Please ensure the `AutomationAssumeRole` of the remediation matches the value for `config_remediation_role_arn`.
 - You must install the Amazon Q developer app into your Slack workspace and configure to send messages to your desired channel.
+- If you change the `lambda_function.py`, you must re-create the deployment package following these steps: https://docs.aws.amazon.com/lambda/latest/dg/python-package.html#python-package-create-dependencies
 
 ### Additional recommendations
 - We recommend setting up the Slack integration to enable threading messages. This can be done by commenting `@Amazon Q preferences` in a channel whwere the app is installed, choosing `Set Preferences` and then selecting `Notification Threading Preferences` 
